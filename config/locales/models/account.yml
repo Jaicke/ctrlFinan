@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      account:
+        one: Account
+        other: Accounts
+    attributes:
+      account:
+        name: Nome
+        balance_cents: Saldo em Centavos
+        balance: Saldo

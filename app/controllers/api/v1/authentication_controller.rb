@@ -12,7 +12,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
       render json: { access_token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
                      username: @user.username }, status: :ok
     else
-      render json: { error: 'Email or password are incorrect.' }, status: :unauthorized
+      render json: { error: I18n.t('errors.user_invalid') }, status: :unauthorized
     end
   end
 

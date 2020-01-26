@@ -7,10 +7,11 @@ class User < ApplicationRecord
 
   # validations
   validates_presence_of :username, :email, :password, :password_confirmation
-  validates_uniqueness_of :username, :email
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :password, length: { minimum: 8 }, confirmation: true
-
+  validates_uniqueness_of :username, if: -> { username.present? }
+  validates_uniqueness_of :email, if: -> { email.present? }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, if: -> { email.present? }
+  validates :password, length: { minimum: 8 }, if: -> { password.present? }
+  validates :password, confirmation: true, if: -> { password.present? && password_confirmation.present? }
 
   private
 
